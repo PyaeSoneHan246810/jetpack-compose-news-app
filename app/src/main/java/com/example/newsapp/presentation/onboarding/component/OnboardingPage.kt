@@ -22,7 +22,6 @@ import com.example.newsapp.presentation.onboarding.data.pages
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_MD
 import com.example.newsapp.ui.theme.SPACING_SM
-import com.example.newsapp.ui.theme.SPACING_XS
 
 @Composable
 fun OnboardingPage(

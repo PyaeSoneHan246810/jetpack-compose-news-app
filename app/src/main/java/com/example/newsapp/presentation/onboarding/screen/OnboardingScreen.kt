@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -28,6 +27,7 @@ import com.example.newsapp.presentation.onboarding.component.OnboardingIndicator
 import com.example.newsapp.presentation.onboarding.component.OnboardingPage
 import com.example.newsapp.presentation.onboarding.data.Page
 import com.example.newsapp.presentation.onboarding.data.pages
+import com.example.newsapp.presentation.onboarding.events.OnBoardingEvent
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_MD
 import com.example.newsapp.ui.theme.SPACING_XS
@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 fun OnboardingScreen(
     modifier: Modifier = Modifier,
     onboardingPages: List<Page> = pages,
-    onGetStarted: () -> Unit
+    onGetStarted: (event: OnBoardingEvent) -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -124,7 +124,7 @@ fun OnboardingScreen(
                             text = it,
                             onClick = {
                                 if (pagerState.currentPage == 2) {
-                                    onGetStarted()
+                                    onGetStarted(OnBoardingEvent.SaveAppEntry)
                                 } else {
                                     scope.launch {
                                         pagerState.animateScrollToPage(
