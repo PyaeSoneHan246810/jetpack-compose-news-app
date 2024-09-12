@@ -20,3 +20,7 @@ val CORNER_XXL = 28.dp
 val CORNER_FULL = 1000.dp
 
 val INDICATOR_SIZE = 16.dp
+
+val ARTICLE_CARD_SIZE = 96.dp
+
+val SMALL_ICON_SIZE = 16.dp
