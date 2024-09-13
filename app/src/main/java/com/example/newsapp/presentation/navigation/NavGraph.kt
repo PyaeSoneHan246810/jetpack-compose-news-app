@@ -1,17 +1,15 @@
 package com.example.newsapp.presentation.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.newsapp.presentation.home.screen.HomeScreen
+import com.example.newsapp.presentation.home.viewModel.HomeViewModel
 import com.example.newsapp.presentation.onboarding.screen.OnboardingScreen
 import com.example.newsapp.presentation.onboarding.viewModel.OnBoardingViewModel
 
@@ -47,18 +45,16 @@ fun NavGraph(
             composable(
                 route = Screen.NewsNavigatorScreen.route
             ) {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                ) {
-                    Box(
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Welcome"
-                        )
+                val viewModel: HomeViewModel = hiltViewModel()
+                HomeScreen(
+                    articles = viewModel.articles.collectAsLazyPagingItems(),
+                    onNavigateToSearchScreen = { route ->
+
+                    },
+                    onNavigateToDetailsScreen = { route ->
+
                     }
-                }
+                )
             }
         }
     }

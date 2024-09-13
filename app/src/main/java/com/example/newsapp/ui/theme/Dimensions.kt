@@ -21,6 +21,8 @@ val CORNER_FULL = 1000.dp
 
 val INDICATOR_SIZE = 16.dp
 
+val SMALL_ICON_SIZE = 16.dp
+
 val ARTICLE_CARD_SIZE = 96.dp
 
-val SMALL_ICON_SIZE = 16.dp
+val SHIMMER_BOX_HEIGHT = 16.dp

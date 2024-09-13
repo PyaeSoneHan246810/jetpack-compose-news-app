@@ -5,16 +5,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Timer
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,9 +30,7 @@ import com.example.newsapp.domain.model.Source
 import com.example.newsapp.ui.theme.ARTICLE_CARD_SIZE
 import com.example.newsapp.ui.theme.CORNER_XS
 import com.example.newsapp.ui.theme.NewsAppTheme
-import com.example.newsapp.ui.theme.SMALL_ICON_SIZE
 import com.example.newsapp.ui.theme.SPACING_XS
-import com.example.newsapp.ui.theme.SPACING_XXS
 
 @Composable
 fun ArticleCard(
@@ -48,10 +41,10 @@ fun ArticleCard(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(CORNER_XS))
             .clickable(
                 onClick = onClick
             )
-            .clip(RoundedCornerShape(CORNER_XS))
     ) {
         AsyncImage(
             modifier = Modifier
@@ -82,39 +75,19 @@ fun ArticleCard(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = article.source.name,
-                    style = MaterialTheme.typography.labelMedium.copy(
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.width(SPACING_XS))
-                Icon(
-                    modifier = Modifier
-                        .size(SMALL_ICON_SIZE),
-                    imageVector = Icons.Outlined.Timer,
-                    contentDescription = article.publishedAt,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(modifier = Modifier.width(SPACING_XXS))
-                Text(
-                    text = article.publishedAt,
-                    style = MaterialTheme.typography.labelMedium.copy(
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
+            Text(
+                text = article.source.name,
+                style = MaterialTheme.typography.labelMedium.copy(
+                    fontWeight = FontWeight.SemiBold
+                ),
+                color = MaterialTheme.colorScheme.primary
+            )
         }
     }
 }
 
-@Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light Mode")
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark Mode")
 @Composable
 private fun ArticleCardPrev() {
     NewsAppTheme {
