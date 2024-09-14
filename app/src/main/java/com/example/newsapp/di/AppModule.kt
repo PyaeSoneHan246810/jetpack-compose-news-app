@@ -11,6 +11,7 @@ import com.example.newsapp.domain.usecases.app_entry.ReadAppEntry
 import com.example.newsapp.domain.usecases.app_entry.SaveAppEntry
 import com.example.newsapp.domain.usecases.articles.ArticlesUseCases
 import com.example.newsapp.domain.usecases.articles.GetArticles
+import com.example.newsapp.domain.usecases.articles.SearchArticles
 import com.example.newsapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -77,6 +78,9 @@ object AppModule {
     ): ArticlesUseCases {
         return ArticlesUseCases(
             getArticles = GetArticles(
+                newsRepository = newsRepository
+            ),
+            searchArticles = SearchArticles(
                 newsRepository = newsRepository
             )
         )

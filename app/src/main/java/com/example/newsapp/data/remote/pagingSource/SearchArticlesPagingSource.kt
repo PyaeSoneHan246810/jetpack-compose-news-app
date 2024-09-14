@@ -6,11 +6,11 @@ import com.example.newsapp.BuildConfig
 import com.example.newsapp.data.remote.api.NewsApi
 import com.example.newsapp.domain.model.Article
 
-class NewsPagingSource(
+class SearchArticlesPagingSource(
     private val newsApi: NewsApi,
     private val sources: String,
+    private val searchQuery: String
 ): PagingSource<Int, Article>() {
-
     private var totalArticlesCount = 0
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
         return state.anchorPosition?.let { position ->
@@ -22,17 +22,18 @@ class NewsPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key ?: 1
         return try {
-            val newsResponse = newsApi.getArticles(
+            val searchArticlesResponse = newsApi.searchArticles(
+                searchQuery = searchQuery,
                 apiKey = BuildConfig.API_KEY,
                 sources = sources,
                 page = page
             )
-            totalArticlesCount += newsResponse.articles.size
+            totalArticlesCount += searchArticlesResponse.articles.size
             LoadResult.Page(
-                data = newsResponse.articles.distinctBy {
+                data = searchArticlesResponse.articles.distinctBy {
                     it.title
                 },
-                nextKey = if (totalArticlesCount == newsResponse.totalResults) null else page + 1,
+                nextKey = if (totalArticlesCount == searchArticlesResponse.totalResults) null else page + 1,
                 prevKey = null,
             )
         } catch (e: Exception) {

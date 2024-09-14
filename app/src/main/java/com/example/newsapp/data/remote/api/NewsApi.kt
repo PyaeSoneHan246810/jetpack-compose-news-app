@@ -11,4 +11,12 @@ interface NewsApi {
         @Query("sources") sources: String,
         @Query("page") page: Int,
     ): NewsResponse
+
+    @GET("everything")
+    suspend fun searchArticles(
+        @Query("q") searchQuery: String,
+        @Query("apiKey") apiKey: String,
+        @Query("sources") sources: String,
+        @Query("page") page: Int,
+    ): NewsResponse
 }
