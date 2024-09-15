@@ -7,9 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.newsapp.domain.model.Article
-import com.example.newsapp.domain.model.Source
-import com.example.newsapp.presentation.details.screen.DetailsScreen
 import com.example.newsapp.presentation.onboarding.screen.OnboardingScreen
 import com.example.newsapp.presentation.onboarding.viewModel.OnBoardingViewModel
 
