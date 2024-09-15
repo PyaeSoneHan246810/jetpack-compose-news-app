@@ -1,9 +1,10 @@
 package com.example.newsapp.domain.usecases.articles
 
 data class ArticlesUseCases(
-    var getArticles: GetArticles,
-    var searchArticles: SearchArticles,
-    var insertBookmarkArticle: InsertBookmarkArticle,
-    var deleteBookmarkArticle: DeleteBookmarkArticle,
-    var getBookmarkArticles: GetBookmarkArticles
+    val getArticles: GetArticles,
+    val searchArticles: SearchArticles,
+    val insertBookmarkArticle: InsertBookmarkArticle,
+    val deleteBookmarkArticle: DeleteBookmarkArticle,
+    val getBookmarkArticles: GetBookmarkArticles,
+    val getSingleBookmarkArticle: GetSingleBookmarkArticle,
 )

@@ -23,11 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.newsapp.presentation.common.CustomTextButton
 import com.example.newsapp.presentation.common.PrimaryButton
+import com.example.newsapp.presentation.navigation.Screen
 import com.example.newsapp.presentation.onboarding.component.OnboardingIndicators
 import com.example.newsapp.presentation.onboarding.component.OnboardingPage
-import com.example.newsapp.presentation.onboarding.data.Page
-import com.example.newsapp.presentation.onboarding.data.pages
 import com.example.newsapp.presentation.onboarding.event.OnBoardingEvent
+import com.example.newsapp.presentation.onboarding.uiData.Page
+import com.example.newsapp.presentation.onboarding.uiData.pages
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_MD
 import com.example.newsapp.ui.theme.SPACING_XS
@@ -37,7 +38,8 @@ import kotlinx.coroutines.launch
 fun OnboardingScreen(
     modifier: Modifier = Modifier,
     onboardingPages: List<Page> = pages,
-    onGetStarted: (event: OnBoardingEvent) -> Unit
+    onGetStarted: (event: OnBoardingEvent) -> Unit,
+    onNavigateToNewsNavigatorScreen: (route: String) -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -125,6 +127,7 @@ fun OnboardingScreen(
                             onClick = {
                                 if (pagerState.currentPage == 2) {
                                     onGetStarted(OnBoardingEvent.SaveAppEntry)
+                                    onNavigateToNewsNavigatorScreen(Screen.NewsNavigatorScreen.route)
                                 } else {
                                     scope.launch {
                                         pagerState.animateScrollToPage(
@@ -149,7 +152,8 @@ fun OnboardingScreenPrev(
 ) {
     NewsAppTheme {
         OnboardingScreen(
-            onGetStarted = {}
+            onGetStarted = {},
+            onNavigateToNewsNavigatorScreen = {}
         )
     }
 }

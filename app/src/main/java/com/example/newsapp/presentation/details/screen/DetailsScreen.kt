@@ -51,7 +51,7 @@ fun DetailsScreen(
             DetailsTopBar(
                 onBackClick = onNavigateBack,
                 onBookmarkClick = {
-                    onBookmarkClick(DetailsEvent.BookmarkArticle)
+                    onBookmarkClick(DetailsEvent.BookmarkArticle(article))
                 },
                 onShareClick = {
                     Intent(Intent.ACTION_SEND).also { intent ->

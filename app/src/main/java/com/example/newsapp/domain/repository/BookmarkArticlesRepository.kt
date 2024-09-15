@@ -9,4 +9,6 @@ interface BookmarkArticlesRepository {
     suspend fun deleteBookmarkArticle(article: Article)
 
     fun getBookmarkArticles(): Flow<List<Article>>
+
+    suspend fun getSingleBookmarkArticle(url: String): Article?
 }

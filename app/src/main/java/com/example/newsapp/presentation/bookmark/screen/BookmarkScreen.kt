@@ -34,12 +34,12 @@ fun BookmarkScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .padding(SPACING_MD)
         ) {
+            Spacer(modifier = Modifier.height(SPACING_MD))
             Text(
                 modifier = Modifier
                     .padding(horizontal = SPACING_MD),
-                text = stringResource(id = R.string.bookmark_title),
+                text = stringResource(id = R.string.bookmarks),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.SemiBold
                 )
@@ -51,6 +51,7 @@ fun BookmarkScreen(
                     onNavigateToDetailsScreen(Screen.DetailsScreen.route)
                 }
             )
+            Spacer(modifier = Modifier.height(SPACING_MD))
         }
     }
 }

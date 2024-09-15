@@ -18,4 +18,7 @@ interface BookmarkArticlesDao {
 
     @Query("SELECT * FROM article")
     fun getBookmarkArticles(): Flow<List<Article>>
+
+    @Query("SELECT * FROM article WHERE url = :url")
+    suspend fun getSingleBookmarkArticle(url: String): Article?
 }

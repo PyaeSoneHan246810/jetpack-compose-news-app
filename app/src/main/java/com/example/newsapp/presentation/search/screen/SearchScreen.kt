@@ -35,8 +35,8 @@ fun SearchScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .padding(vertical = SPACING_MD)
         ) {
+            Spacer(modifier = Modifier.height(SPACING_MD))
             SearchBar(
                 modifier = Modifier
                     .padding(horizontal = SPACING_MD),
@@ -63,6 +63,7 @@ fun SearchScreen(
                     }
                 )
             }
+            Spacer(modifier = Modifier.height(SPACING_MD))
         }
     }
 }

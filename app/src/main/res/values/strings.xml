@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">News App</string>
-    <string name="home_title">Home</string>
+    <!--labels and texts-->
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="bookmarks">Bookmark</string>
+    <!--actions-->
     <string name="back">Back</string>
     <string name="bookmark">Bookmark</string>
     <string name="share">Share</string>
     <string name="browse">Browse</string>
-    <string name="bookmark_title">Bookmark</string>
 </resources>

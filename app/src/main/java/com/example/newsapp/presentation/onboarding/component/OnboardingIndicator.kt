@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.newsapp.presentation.onboarding.data.pages
+import com.example.newsapp.presentation.onboarding.uiData.pages
 import com.example.newsapp.ui.theme.INDICATOR_SIZE
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_XXS

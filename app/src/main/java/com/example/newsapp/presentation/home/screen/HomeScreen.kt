@@ -37,13 +37,12 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .padding(vertical = SPACING_MD)
-
         ) {
+            Spacer(modifier = Modifier.height(SPACING_MD))
             Text(
                 modifier = Modifier
                     .padding(horizontal = SPACING_MD),
-                text = stringResource(id = R.string.home_title),
+                text = stringResource(id = R.string.home),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.SemiBold
                 )
@@ -67,6 +66,7 @@ fun HomeScreen(
                     onNavigateToDetailsScreen(Screen.DetailsScreen.route)
                 }
             )
+            Spacer(modifier = Modifier.height(SPACING_MD))
         }
     }
 }

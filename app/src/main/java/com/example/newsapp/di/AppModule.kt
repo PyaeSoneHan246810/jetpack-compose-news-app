@@ -19,6 +19,7 @@ import com.example.newsapp.domain.usecases.articles.ArticlesUseCases
 import com.example.newsapp.domain.usecases.articles.DeleteBookmarkArticle
 import com.example.newsapp.domain.usecases.articles.GetArticles
 import com.example.newsapp.domain.usecases.articles.GetBookmarkArticles
+import com.example.newsapp.domain.usecases.articles.GetSingleBookmarkArticle
 import com.example.newsapp.domain.usecases.articles.InsertBookmarkArticle
 import com.example.newsapp.domain.usecases.articles.SearchArticles
 import com.example.newsapp.util.Constants
@@ -134,6 +135,9 @@ object AppModule {
                 bookmarkArticlesRepository = bookmarkArticlesRepository
             ),
             getBookmarkArticles = GetBookmarkArticles(
+                bookmarkArticlesRepository = bookmarkArticlesRepository
+            ),
+            getSingleBookmarkArticle = GetSingleBookmarkArticle(
                 bookmarkArticlesRepository = bookmarkArticlesRepository
             )
         )

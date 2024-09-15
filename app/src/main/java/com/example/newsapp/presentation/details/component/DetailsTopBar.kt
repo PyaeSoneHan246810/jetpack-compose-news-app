@@ -3,7 +3,7 @@ package com.example.newsapp.presentation.details.component
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Public
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,7 +46,7 @@ fun DetailsTopBar(
                 onClick = onBookmarkClick
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Bookmark,
+                    imageVector = Icons.Outlined.BookmarkBorder,
                     contentDescription = stringResource(id = R.string.bookmark)
                 )
             }

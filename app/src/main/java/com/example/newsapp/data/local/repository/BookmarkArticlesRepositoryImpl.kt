@@ -17,4 +17,5 @@ class BookmarkArticlesRepositoryImpl(
     }
 
     override fun getBookmarkArticles(): Flow<List<Article>> = bookmarkArticlesDao.getBookmarkArticles()
+    override suspend fun getSingleBookmarkArticle(url: String): Article? = bookmarkArticlesDao.getSingleBookmarkArticle(url)
 }

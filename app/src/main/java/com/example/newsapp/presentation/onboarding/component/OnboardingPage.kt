@@ -17,8 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.newsapp.presentation.onboarding.data.Page
-import com.example.newsapp.presentation.onboarding.data.pages
+import com.example.newsapp.presentation.onboarding.uiData.Page
+import com.example.newsapp.presentation.onboarding.uiData.pages
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_MD
 import com.example.newsapp.ui.theme.SPACING_SM
