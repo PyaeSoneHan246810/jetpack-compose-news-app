@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
     private val mainViewModel: MainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 mainViewModel.splashScreenVisible
@@ -29,7 +30,6 @@ class MainActivity : ComponentActivity() {
             statusBarStyle = SystemBarStyle.auto(Color.Transparent.toArgb(), Color.Transparent.toArgb()),
             navigationBarStyle = SystemBarStyle.auto(Color.Transparent.toArgb(), Color.Transparent.toArgb())
         )
-        super.onCreate(savedInstanceState)
         setContent {
             NewsAppTheme{
                 navController = rememberNavController()

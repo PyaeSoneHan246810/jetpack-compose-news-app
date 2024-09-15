@@ -1,6 +1,10 @@
 package com.example.newsapp.di
 
 import android.content.Context
+import androidx.room.Room
+import com.example.newsapp.data.local.dao.ArticlesDao
+import com.example.newsapp.data.local.database.ArticlesDatabase
+import com.example.newsapp.data.local.typeConverter.ArticleTypeConverter
 import com.example.newsapp.data.manager.LocalUserManagerImplementation
 import com.example.newsapp.data.remote.api.NewsApi
 import com.example.newsapp.data.remote.repository.NewsRepositoryImpl
@@ -84,5 +88,29 @@ object AppModule {
                 newsRepository = newsRepository
             )
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticlesDatabase(
+        @ApplicationContext context: Context
+    ): ArticlesDatabase {
+        return Room
+            .databaseBuilder(
+                context = context,
+                klass = ArticlesDatabase::class.java,
+                name = Constants.ARTICLES_DATABASE_NAME
+            )
+            .addTypeConverter(ArticleTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticlesDao(
+        articlesDatabase: ArticlesDatabase
+    ): ArticlesDao {
+        return articlesDatabase.articlesDao
     }
 }
