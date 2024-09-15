@@ -7,12 +7,12 @@ import com.example.newsapp.data.remote.api.NewsApi
 import com.example.newsapp.data.remote.pagingSource.GetArticlesPagingSource
 import com.example.newsapp.data.remote.pagingSource.SearchArticlesPagingSource
 import com.example.newsapp.domain.model.Article
-import com.example.newsapp.domain.repository.NewsRepository
+import com.example.newsapp.domain.repository.ArticlesRepository
 import kotlinx.coroutines.flow.Flow
 
-class NewsRepositoryImpl(
+class ArticlesRepositoryImpl(
     private val newsApi: NewsApi,
-): NewsRepository {
+): ArticlesRepository {
     override fun getArticles(sources: List<String>): Flow<PagingData<Article>> {
         val pager = Pager(
             config = PagingConfig(

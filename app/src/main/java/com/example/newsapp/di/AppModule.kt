@@ -2,19 +2,24 @@ package com.example.newsapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.newsapp.data.local.dao.ArticlesDao
-import com.example.newsapp.data.local.database.ArticlesDatabase
-import com.example.newsapp.data.local.typeConverter.ArticleTypeConverter
-import com.example.newsapp.data.manager.LocalUserManagerImplementation
+import com.example.newsapp.data.local.dao.BookmarkArticlesDao
+import com.example.newsapp.data.local.database.BookmarkArticlesDatabase
+import com.example.newsapp.data.local.repository.BookmarkArticlesRepositoryImpl
+import com.example.newsapp.data.local.typeConverter.BookmarkArticleTypeConverter
+import com.example.newsapp.data.manager.LocalUserManagerImpl
 import com.example.newsapp.data.remote.api.NewsApi
-import com.example.newsapp.data.remote.repository.NewsRepositoryImpl
+import com.example.newsapp.data.remote.repository.ArticlesRepositoryImpl
 import com.example.newsapp.domain.manager.LocalUserManager
-import com.example.newsapp.domain.repository.NewsRepository
+import com.example.newsapp.domain.repository.ArticlesRepository
+import com.example.newsapp.domain.repository.BookmarkArticlesRepository
 import com.example.newsapp.domain.usecases.app_entry.AppEntryUseCases
 import com.example.newsapp.domain.usecases.app_entry.ReadAppEntry
 import com.example.newsapp.domain.usecases.app_entry.SaveAppEntry
 import com.example.newsapp.domain.usecases.articles.ArticlesUseCases
+import com.example.newsapp.domain.usecases.articles.DeleteBookmarkArticle
 import com.example.newsapp.domain.usecases.articles.GetArticles
+import com.example.newsapp.domain.usecases.articles.GetBookmarkArticles
+import com.example.newsapp.domain.usecases.articles.InsertBookmarkArticle
 import com.example.newsapp.domain.usecases.articles.SearchArticles
 import com.example.newsapp.util.Constants
 import dagger.Module
@@ -34,7 +39,7 @@ object AppModule {
     fun provideLocalUserManager(
         @ApplicationContext context: Context
     ): LocalUserManager {
-        return LocalUserManagerImplementation(
+        return LocalUserManagerImpl(
             context = context
         )
     }
@@ -67,50 +72,70 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository {
-        return NewsRepositoryImpl(
-            newsApi = newsApi
-        )
-    }
-
-    @Provides
-    @Singleton
-    fun provideArticlesUseCases(
-        newsRepository: NewsRepository
-    ): ArticlesUseCases {
-        return ArticlesUseCases(
-            getArticles = GetArticles(
-                newsRepository = newsRepository
-            ),
-            searchArticles = SearchArticles(
-                newsRepository = newsRepository
-            )
-        )
-    }
-
-    @Provides
-    @Singleton
-    fun provideArticlesDatabase(
+    fun provideBookmarkArticlesDatabase(
         @ApplicationContext context: Context
-    ): ArticlesDatabase {
+    ): BookmarkArticlesDatabase {
         return Room
             .databaseBuilder(
                 context = context,
-                klass = ArticlesDatabase::class.java,
+                klass = BookmarkArticlesDatabase::class.java,
                 name = Constants.ARTICLES_DATABASE_NAME
             )
-            .addTypeConverter(ArticleTypeConverter())
+            .addTypeConverter(BookmarkArticleTypeConverter())
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideArticlesDao(
-        articlesDatabase: ArticlesDatabase
-    ): ArticlesDao {
-        return articlesDatabase.articlesDao
+    fun provideBookmarkArticlesDao(
+        bookmarkArticlesDatabase: BookmarkArticlesDatabase
+    ): BookmarkArticlesDao {
+        return bookmarkArticlesDatabase.bookmarkArticlesDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticlesRepository(
+        newsApi: NewsApi
+    ): ArticlesRepository {
+        return ArticlesRepositoryImpl(
+            newsApi = newsApi
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideBookmarkArticlesRepository(
+        bookmarkArticlesDao: BookmarkArticlesDao
+    ): BookmarkArticlesRepository {
+        return BookmarkArticlesRepositoryImpl(
+            bookmarkArticlesDao = bookmarkArticlesDao
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticlesUseCases(
+        articlesRepository: ArticlesRepository,
+        bookmarkArticlesRepository: BookmarkArticlesRepository
+    ): ArticlesUseCases {
+        return ArticlesUseCases(
+            getArticles = GetArticles(
+                articlesRepository = articlesRepository
+            ),
+            searchArticles = SearchArticles(
+                articlesRepository = articlesRepository
+            ),
+            insertBookmarkArticle = InsertBookmarkArticle(
+                bookmarkArticlesRepository = bookmarkArticlesRepository
+            ),
+            deleteBookmarkArticle = DeleteBookmarkArticle(
+                bookmarkArticlesRepository = bookmarkArticlesRepository
+            ),
+            getBookmarkArticles = GetBookmarkArticles(
+                bookmarkArticlesRepository = bookmarkArticlesRepository
+            )
+        )
     }
 }

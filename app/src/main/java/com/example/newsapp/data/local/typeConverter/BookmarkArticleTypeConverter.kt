@@ -5,7 +5,7 @@ import androidx.room.TypeConverter
 import com.example.newsapp.domain.model.Source
 
 @ProvidedTypeConverter
-class ArticleTypeConverter {
+class BookmarkArticleTypeConverter {
     @TypeConverter
     fun sourceToString(source: Source): String {
         return "${source.id},${source.name}"

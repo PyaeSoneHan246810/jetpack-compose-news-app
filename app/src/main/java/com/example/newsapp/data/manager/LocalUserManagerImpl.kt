@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
-class LocalUserManagerImplementation(
+class LocalUserManagerImpl(
     private val context: Context
 ): LocalUserManager {
     private val dataStore = context.dataStore

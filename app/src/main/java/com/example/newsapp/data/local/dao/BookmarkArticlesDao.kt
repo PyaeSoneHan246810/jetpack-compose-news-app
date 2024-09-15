@@ -9,13 +9,13 @@ import com.example.newsapp.domain.model.Article
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ArticlesDao {
+interface BookmarkArticlesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertArticle(article: Article)
+    suspend fun insertBookmarkArticle(article: Article)
 
     @Delete
-    suspend fun deleteArticle(article: Article)
+    suspend fun deleteBookmarkArticle(article: Article)
 
     @Query("SELECT * FROM article")
-    fun getArticles(): Flow<Article>
+    fun getBookmarkArticles(): Flow<List<Article>>
 }
