@@ -1,4 +1,4 @@
-package com.example.newsapp.presentation.onboarding.events
+package com.example.newsapp.presentation.onboarding.event
 
 sealed class OnBoardingEvent {
     data object SaveAppEntry: OnBoardingEvent()

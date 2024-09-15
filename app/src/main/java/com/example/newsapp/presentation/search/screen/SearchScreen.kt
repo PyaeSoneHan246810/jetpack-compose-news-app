@@ -14,7 +14,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.newsapp.presentation.common.ArticlesContent
 import com.example.newsapp.presentation.common.SearchBar
 import com.example.newsapp.presentation.navigation.Screen
-import com.example.newsapp.presentation.search.events.SearchEvent
+import com.example.newsapp.presentation.search.event.SearchEvent
 import com.example.newsapp.presentation.search.state.SearchState
 import com.example.newsapp.ui.theme.SPACING_MD
 

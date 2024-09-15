@@ -27,7 +27,7 @@ import com.example.newsapp.presentation.onboarding.component.OnboardingIndicator
 import com.example.newsapp.presentation.onboarding.component.OnboardingPage
 import com.example.newsapp.presentation.onboarding.data.Page
 import com.example.newsapp.presentation.onboarding.data.pages
-import com.example.newsapp.presentation.onboarding.events.OnBoardingEvent
+import com.example.newsapp.presentation.onboarding.event.OnBoardingEvent
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.newsapp.ui.theme.SPACING_MD
 import com.example.newsapp.ui.theme.SPACING_XS

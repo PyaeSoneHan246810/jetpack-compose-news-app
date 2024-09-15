@@ -9,7 +9,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.newsapp.domain.model.Article
 import com.example.newsapp.domain.usecases.articles.ArticlesUseCases
-import com.example.newsapp.presentation.search.events.SearchEvent
+import com.example.newsapp.presentation.search.event.SearchEvent
 import com.example.newsapp.presentation.search.state.SearchState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
