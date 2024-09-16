@@ -31,6 +31,8 @@ class GetArticlesPagingSource(
             LoadResult.Page(
                 data = getArticlesResponse.articles.distinctBy {
                     it.title
+                }.filterNot {
+                    it.title.endsWith("GMT")
                 },
                 nextKey = if (totalArticlesCount == getArticlesResponse.totalResults) null else page + 1,
                 prevKey = null,

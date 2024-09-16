@@ -11,6 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.newsapp.domain.model.Article
 import com.example.newsapp.presentation.common.ArticlesContent
 import com.example.newsapp.presentation.common.SearchBar
 import com.example.newsapp.presentation.navigation.Screen
@@ -24,7 +25,7 @@ fun SearchScreen(
     searchState: SearchState,
     onSearchQueryUpdated: (event: SearchEvent) -> Unit,
     onSearchArticles: (event: SearchEvent) -> Unit,
-    onNavigateToDetailsScreen: (route: String) -> Unit,
+    onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
 ) {
     Surface(
         modifier = modifier
@@ -59,7 +60,7 @@ fun SearchScreen(
                 ArticlesContent(
                     articles = articles,
                     onArticleClick = { article ->
-                        onNavigateToDetailsScreen(Screen.DetailsScreen.route)
+                        onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
                     }
                 )
             }

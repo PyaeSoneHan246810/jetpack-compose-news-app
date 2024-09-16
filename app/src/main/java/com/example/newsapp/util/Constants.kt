@@ -5,4 +5,5 @@ object Constants {
     const val USER_SETTINGS = "user_settings"
     const val APP_ENTRY = "app_entry"
     const val ARTICLES_DATABASE_NAME = "bookmark_articles_db"
+    const val ARTICLE_KEY = "article"
 }

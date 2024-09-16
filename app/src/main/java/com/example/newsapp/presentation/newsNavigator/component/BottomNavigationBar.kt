@@ -2,9 +2,12 @@ package com.example.newsapp.presentation.newsNavigator.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.BottomAppBarScrollBehavior
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
@@ -17,16 +20,19 @@ import com.example.newsapp.presentation.newsNavigator.uiData.NavigationBarItem
 import com.example.newsapp.presentation.newsNavigator.uiData.navigationBarItems
 import com.example.newsapp.ui.theme.NewsAppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomNavigationBar (
     modifier: Modifier = Modifier,
+    scrollBehavior: BottomAppBarScrollBehavior,
     navigationBarItems: List<NavigationBarItem>,
     selectedItemIndex: Int,
     onItemClick: (clickedItemIndex: Int) -> Unit
 ) {
-    NavigationBar(
+    BottomAppBar(
         modifier = modifier
             .fillMaxWidth(),
+        scrollBehavior = scrollBehavior,
         containerColor = MaterialTheme.colorScheme.background,
         contentColor = MaterialTheme.colorScheme.onBackground,
         tonalElevation = 2.dp,
@@ -60,12 +66,14 @@ fun BottomNavigationBar (
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light Mode")
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark Mode")
 @Composable
 private fun BottomNavigationBarPrev() {
     NewsAppTheme {
         BottomNavigationBar(
+            scrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior(),
             navigationBarItems = navigationBarItems,
             selectedItemIndex = 0,
             onItemClick = { _ ->  }

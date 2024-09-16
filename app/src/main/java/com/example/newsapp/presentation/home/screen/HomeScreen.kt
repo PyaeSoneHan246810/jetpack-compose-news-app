@@ -26,7 +26,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
     onNavigateToSearchScreen: (route: String) -> Unit,
-    onNavigateToDetailsScreen: (route: String) -> Unit,
+    onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
 ) {
     Surface(
         modifier = modifier
@@ -63,7 +63,7 @@ fun HomeScreen(
             ArticlesContent(
                 articles = articles,
                 onArticleClick = { article ->
-                    onNavigateToDetailsScreen(Screen.DetailsScreen.route)
+                    onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
                 }
             )
             Spacer(modifier = Modifier.height(SPACING_MD))

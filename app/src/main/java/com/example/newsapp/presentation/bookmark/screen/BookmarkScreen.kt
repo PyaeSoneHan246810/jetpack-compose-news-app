@@ -23,7 +23,7 @@ import com.example.newsapp.ui.theme.SPACING_MD
 fun BookmarkScreen(
     modifier: Modifier = Modifier,
     articles: List<Article>,
-    onNavigateToDetailsScreen: (route: String) -> Unit,
+    onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
 ) {
     Surface(
         modifier = modifier
@@ -48,7 +48,7 @@ fun BookmarkScreen(
             ArticlesContent(
                 articles = articles,
                 onArticleClick = { article ->
-                    onNavigateToDetailsScreen(Screen.DetailsScreen.route)
+                    onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
                 }
             )
             Spacer(modifier = Modifier.height(SPACING_MD))

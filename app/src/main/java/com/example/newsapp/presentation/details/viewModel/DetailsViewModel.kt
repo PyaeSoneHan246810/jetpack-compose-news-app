@@ -18,24 +18,38 @@ class DetailsViewModel @Inject constructor (
 ): ViewModel() {
     var message by mutableStateOf<String?>(null)
         private set
+
+    private var bookmarkArticle by mutableStateOf<Article?>(null)
+
+
     fun onEvent(bookmarkEvent: DetailsEvent) {
         when (bookmarkEvent) {
+            is DetailsEvent.GetBookmarkArticle -> {
+                viewModelScope.launch {
+                    getBookmarkArticle(bookmarkEvent.url)
+                }
+            }
             is DetailsEvent.BookmarkArticle -> {
                 viewModelScope.launch {
-                    val article = bookmarkEvent.article
-                    if (isAlreadyBookmarked(article.url)) {
-                        insertArticle(article)
+                    if (!isAlreadyBookmarked()) {
+                        insertArticle(bookmarkEvent.article)
                     } else {
-                        deleteArticle(article)
+                        deleteArticle(bookmarkEvent.article)
                     }
                 }
+            }
+            is DetailsEvent.RemoveMessage -> {
+                message = null
             }
         }
     }
 
-    private suspend fun isAlreadyBookmarked(url: String): Boolean {
-        val article = articlesUseCases.getSingleBookmarkArticle.invoke(url)
-        return article == null
+    private suspend fun getBookmarkArticle(url: String) {
+        bookmarkArticle = articlesUseCases.getSingleBookmarkArticle.invoke(url)
+    }
+
+    fun isAlreadyBookmarked(): Boolean {
+        return bookmarkArticle != null
     }
 
     private suspend fun insertArticle(article: Article) {

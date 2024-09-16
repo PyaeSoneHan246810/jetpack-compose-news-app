@@ -3,6 +3,7 @@ package com.example.newsapp.presentation.details.component
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Public
 import androidx.compose.material.icons.outlined.Share
@@ -23,6 +24,7 @@ import com.example.newsapp.ui.theme.NewsAppTheme
 @Composable
 fun DetailsTopBar(
     modifier: Modifier = Modifier,
+    isAlreadyBookmarked: Boolean,
     onBackClick: () -> Unit,
     onBookmarkClick: () -> Unit,
     onShareClick: () -> Unit,
@@ -37,7 +39,8 @@ fun DetailsTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back)
+                    contentDescription = stringResource(id = R.string.back),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         },
@@ -46,8 +49,9 @@ fun DetailsTopBar(
                 onClick = onBookmarkClick
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.BookmarkBorder,
-                    contentDescription = stringResource(id = R.string.bookmark)
+                    imageVector = if (isAlreadyBookmarked) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder,
+                    contentDescription = stringResource(id = R.string.bookmark),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
             IconButton(
@@ -55,7 +59,8 @@ fun DetailsTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Share,
-                    contentDescription = stringResource(id = R.string.share)
+                    contentDescription = stringResource(id = R.string.share),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
             IconButton(
@@ -63,14 +68,13 @@ fun DetailsTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Public,
-                    contentDescription = stringResource(id = R.string.browse)
+                    contentDescription = stringResource(id = R.string.browse),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.surface,
-            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
-            actionIconContentColor = MaterialTheme.colorScheme.onSurface,
         )
     )
 }
@@ -81,6 +85,7 @@ fun DetailsTopBar(
 private fun DetailsAppBarPrev() {
     NewsAppTheme {
         DetailsTopBar(
+            isAlreadyBookmarked = false,
             onBackClick = {},
             onBookmarkClick = {},
             onShareClick = {},

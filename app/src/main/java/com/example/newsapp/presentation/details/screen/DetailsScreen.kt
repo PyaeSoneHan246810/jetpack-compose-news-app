@@ -39,6 +39,7 @@ import com.example.newsapp.ui.theme.SPACING_MD
 fun DetailsScreen(
     modifier: Modifier = Modifier,
     article: Article,
+    isAlreadyBookmarked: Boolean,
     onNavigateBack: () -> Unit,
     onBookmarkClick: (event: DetailsEvent) -> Unit,
 ) {
@@ -49,6 +50,7 @@ fun DetailsScreen(
         containerColor = MaterialTheme.colorScheme.surface,
         topBar = {
             DetailsTopBar(
+                isAlreadyBookmarked = isAlreadyBookmarked,
                 onBackClick = onNavigateBack,
                 onBookmarkClick = {
                     onBookmarkClick(DetailsEvent.BookmarkArticle(article))
@@ -80,7 +82,7 @@ fun DetailsScreen(
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .padding(paddingValues),
+                .padding(top = paddingValues.calculateTopPadding()),
             contentPadding = PaddingValues(SPACING_MD),
             verticalArrangement = Arrangement.spacedBy(SPACING_LG)
         ) {
@@ -134,6 +136,7 @@ private fun DetailsScreenPrev() {
                 url = "https://markets.businessinsider.com/news/currencies/bitcoin-millionaires-crypto-rally-cryptocurrency-etf-billionaires-sec-ethereum-wealth-2024-8",
                 urlToImage = "https://www.businessinsider.com/public/assets/logos/og-image-logo-social.png?v=2023-11",
             ),
+            isAlreadyBookmarked = false,
             onNavigateBack = {},
             onBookmarkClick = { _ ->  }
         )
