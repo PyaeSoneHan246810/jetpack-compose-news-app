@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.newsapp.R
 import com.example.newsapp.domain.model.Article
+import com.example.newsapp.presentation.bookmark.BookmarkEvent
 import com.example.newsapp.presentation.common.ArticlesContent
 import com.example.newsapp.presentation.navigation.Screen
 import com.example.newsapp.ui.theme.SPACING_MD
@@ -23,6 +24,7 @@ import com.example.newsapp.ui.theme.SPACING_MD
 fun BookmarkScreen(
     modifier: Modifier = Modifier,
     articles: List<Article>,
+    onSwipeToDelete: (event: BookmarkEvent) -> Unit,
     onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
 ) {
     Surface(
@@ -49,6 +51,9 @@ fun BookmarkScreen(
                 articles = articles,
                 onArticleClick = { article ->
                     onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
+                },
+                onSwipeToDelete = { article ->
+                    onSwipeToDelete(BookmarkEvent.RemoveBookmarkArticle(article))
                 }
             )
             Spacer(modifier = Modifier.height(SPACING_MD))

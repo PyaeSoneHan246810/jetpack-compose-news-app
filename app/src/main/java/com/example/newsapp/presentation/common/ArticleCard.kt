@@ -1,6 +1,7 @@
 package com.example.newsapp.presentation.common
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -42,6 +43,7 @@ fun ArticleCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(CORNER_XS))
+            .background(MaterialTheme.colorScheme.surface)
             .clickable(
                 onClick = onClick
             )

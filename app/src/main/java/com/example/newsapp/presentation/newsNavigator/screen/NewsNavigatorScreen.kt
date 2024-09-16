@@ -124,8 +124,13 @@ fun NewsNavigatorScreen(
                 }
                 composable(Screen.BookmarksScreen.route) {
                     val viewModel: BookmarkViewModel = hiltViewModel()
+                    val context = LocalContext.current
                     BookmarkScreen(
                         articles = viewModel.articles,
+                        onSwipeToDelete = { event ->
+                            viewModel.onEvent(event)
+                            Toast.makeText(context, "Successfully removed the article!", Toast.LENGTH_SHORT).show()
+                        },
                         onNavigateToDetailsScreen = { route, article ->
                             navigateToDetailsScreen(navController, article, route)
                         }

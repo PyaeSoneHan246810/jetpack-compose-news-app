@@ -60,7 +60,8 @@ fun ArticlesContent(
 fun ArticlesContent(
     modifier: Modifier = Modifier,
     articles: List<Article>,
-    onArticleClick: (article: Article) -> Unit
+    onArticleClick: (article: Article) -> Unit,
+    onSwipeToDelete: (article: Article) -> Unit
 ) {
     if (articles.isEmpty()) {
         ArticlesListEmptyMessage(
@@ -71,7 +72,8 @@ fun ArticlesContent(
         ArticlesList(
             modifier = modifier,
             articles = articles,
-            onArticleClick = onArticleClick
+            onArticleClick = onArticleClick,
+            onSwipeToDelete = onSwipeToDelete
         )
     }
 }
