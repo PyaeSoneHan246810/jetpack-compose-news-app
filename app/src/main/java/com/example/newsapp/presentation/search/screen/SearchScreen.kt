@@ -26,6 +26,8 @@ fun SearchScreen(
     onSearchQueryUpdated: (event: SearchEvent) -> Unit,
     onSearchArticles: (event: SearchEvent) -> Unit,
     onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
+    isArticlesListRefreshing: Boolean,
+    onArticlesListRefresh: (event: SearchEvent) -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -61,6 +63,10 @@ fun SearchScreen(
                     articles = articles,
                     onArticleClick = { article ->
                         onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
+                    },
+                    isRefreshing = isArticlesListRefreshing,
+                    onRefresh = {
+                        onArticlesListRefresh(SearchEvent.RefreshArticles)
                     }
                 )
             }

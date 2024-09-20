@@ -18,6 +18,7 @@ import com.example.newsapp.R
 import com.example.newsapp.domain.model.Article
 import com.example.newsapp.presentation.common.ArticlesContent
 import com.example.newsapp.presentation.common.SearchBar
+import com.example.newsapp.presentation.home.event.HomeEvent
 import com.example.newsapp.presentation.navigation.Screen
 import com.example.newsapp.ui.theme.SPACING_MD
 
@@ -27,6 +28,8 @@ fun HomeScreen(
     articles: LazyPagingItems<Article>,
     onNavigateToSearchScreen: (route: String) -> Unit,
     onNavigateToDetailsScreen: (route: String, article: Article) -> Unit,
+    isArticlesListRefreshing: Boolean,
+    onArticlesListRefresh: (event: HomeEvent) -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -64,6 +67,10 @@ fun HomeScreen(
                 articles = articles,
                 onArticleClick = { article ->
                     onNavigateToDetailsScreen(Screen.DetailsScreen.route, article)
+                },
+                isRefreshing = isArticlesListRefreshing,
+                onRefresh = {
+                    onArticlesListRefresh(HomeEvent.RefreshArticles)
                 }
             )
             Spacer(modifier = Modifier.height(SPACING_MD))

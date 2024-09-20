@@ -22,17 +22,27 @@ class SearchViewModel @Inject constructor(
     var searchState by mutableStateOf(SearchState())
         private set
 
+    var isRefreshing by mutableStateOf(false)
+        private set
+
     fun onEvent(event: SearchEvent) {
-        searchState = when(event) {
+        when(event) {
             is SearchEvent.UpdateSearchQuery -> {
-                searchState.copy(
+                searchState = searchState.copy(
                     searchQuery = event.searchQuery
                 )
             }
             is SearchEvent.SearchArticles -> {
-                searchState.copy(
+                searchState = searchState.copy(
                     searchArticles = searchArticles(searchQuery = searchState.searchQuery)
                 )
+            }
+            is SearchEvent.RefreshArticles -> {
+                isRefreshing = true
+                searchState = searchState.copy(
+                    searchArticles = searchArticles(searchQuery = searchState.searchQuery)
+                )
+                isRefreshing = false
             }
         }
     }

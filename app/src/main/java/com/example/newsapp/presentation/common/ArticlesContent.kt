@@ -12,7 +12,9 @@ import java.net.SocketTimeoutException
 fun ArticlesContent(
     modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
-    onArticleClick: (article: Article) -> Unit
+    onArticleClick: (article: Article) -> Unit,
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit
 ) {
     //check for error at three different loading state
     val loadState = articles.loadState
@@ -50,7 +52,9 @@ fun ArticlesContent(
             ArticlesList(
                 modifier = modifier,
                 articles = articles.itemSnapshotList.items,
-                onArticleClick = onArticleClick
+                onArticleClick = onArticleClick,
+                isRefreshing = isRefreshing,
+                onRefresh = onRefresh
             )
         }
     }

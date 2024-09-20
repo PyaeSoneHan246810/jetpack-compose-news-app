@@ -102,13 +102,15 @@ fun NewsNavigatorScreen(
                 composable(Screen.HomeScreen.route) {
                     val viewModel: HomeViewModel = hiltViewModel()
                     HomeScreen(
-                        articles = viewModel.articles.collectAsLazyPagingItems(),
+                        articles = viewModel.articles!!.collectAsLazyPagingItems(),
                         onNavigateToSearchScreen = { route ->
                             navigateToScreen(navController, route)
                         },
                         onNavigateToDetailsScreen = { route, article  ->
                             navigateToDetailsScreen(navController, article, route)
-                        }
+                        },
+                        isArticlesListRefreshing = viewModel.isRefreshing,
+                        onArticlesListRefresh = viewModel::onEvent
                     )
                 }
                 composable(Screen.SearchScreen.route) {
@@ -119,7 +121,9 @@ fun NewsNavigatorScreen(
                         onSearchArticles = viewModel::onEvent,
                         onNavigateToDetailsScreen = { route, article ->
                             navigateToDetailsScreen(navController, article, route)
-                        }
+                        },
+                        isArticlesListRefreshing = viewModel.isRefreshing,
+                        onArticlesListRefresh = viewModel::onEvent
                     )
                 }
                 composable(Screen.BookmarksScreen.route) {
